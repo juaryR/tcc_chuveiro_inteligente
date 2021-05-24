@@ -1,0 +1,59 @@
+#https://home-assistant.io/components/sensor/
+
+####################################################
+#                                                  #
+#                      MQTT                        #
+#                                                  #
+####################################################
+
+#https://home-assistant.io/components/sensor.mqtt/
+
+  - platform: mqtt
+    name: "Current_chuv"
+    state_topic: "tele/pow1/current"
+    value_template: '{{ value_json["ENERGY"].Current }}'
+    unit_of_measurement: "A"
+    unique_id: chu_cur
+
+  - platform: mqtt
+    name: "POW1 Energy"
+    state_topic: "tele/pow1/current"
+    value_template: '{{ value_json["ENERGY"]["Today"] }}'
+    unit_of_measurement: "kWh"
+    unique_id: chu_ene
+
+  - platform: mqtt
+    name: "POW1 Power"
+    state_topic: "tele/pow1/current"
+    value_template: '{{ value_json["ENERGY"]["Power"] }}'
+    unit_of_measurement: "W"
+    unique_id: chu_pot
+
+  - platform: mqtt
+    name: "POW1 Voltage"
+    state_topic: "tele/pow1/current"
+    value_template: '{{ value_json["ENERGY"]["Voltage"] }}'
+    unit_of_measurement: "V"
+    unique_id: chu_volt
+
+  - platform: mqtt
+    name: "TH161 Temperature"
+    state_topic: "tele/pow1/current"
+    value_template: "{{ value_json.current_temperature }}"
+    unit_of_measurement: "°C"
+    #  availability_topic: "tele/pow1/LWT"
+    #payload_available: "Online"
+    #payload_not_available: "Offline"
+    unique_id: chu_temp
+
+
+  - platform: statistics
+    entity_id: sensor.pow1_power
+    name: Power stats
+
+####################################################
+#                                                  #
+#            END OF CONFIGURATION FILE             #
+#                                                  #
+####################################################
+

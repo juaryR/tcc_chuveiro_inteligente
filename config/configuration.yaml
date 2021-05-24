@@ -1,0 +1,45 @@
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+frontend:
+  themes: !include_dir_merge_named themes        
+# Text to speech
+tts:
+  - platform: google_translate
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+discovery:
+mqtt:
+  broker: broker
+  port: 1883
+  username: "chuveiro"
+  password: "password123"
+  client_id: ems
+sensor: !include sonoff_sensors.yaml
+utility_meter:
+  daily_energy:
+    source: sensor.pow1_energy
+    cycle: daily
+
+  monthly_energy:
+    source: sensor.pow1_energy
+    cycle: monthly
+climate: !include climate.yaml 
+influxdb:
+   host: 172.17.0.1
+   port: 8086
+   username: "my_user"
+   password: "password123"
+   database: "my_database"
+   include:
+     entities:
+        - sensor.pow1_current
+        - sensor.pow1_power
+        - sensor.pow1_voltage
+        - climate.th_temperature
+        - sensor.th161_temperature 
+

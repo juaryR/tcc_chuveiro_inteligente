@@ -1,0 +1,6 @@
+thermostat:
+  st-font-size-xl: 24px
+  st-font-size-m: 20px
+  st-font-size-title: 20px
+  st-font-size-sensors: 30px
+  st-spacing: 2px

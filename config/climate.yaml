@@ -1,0 +1,34 @@
+
+#https://home-assistant.io/components/sensor/
+
+####################################################
+#                                                  #
+#                      MQTT                        #
+#                                                  #
+####################################################
+
+#https://home-assistant.io/components/sensor.mqtt/
+#https://www.home-assistant.io/lovelace/thermostat/
+# https://www.home-assistant.io/integrations/climate.mqtt/
+  - platform: mqtt
+    name: "TH Temperature"
+    modes:
+      - "auto"
+      - "cool"
+      - "heat"
+    swing_modes:
+      - "on"
+      - "off"
+    mode_command_topic: "tele/pow1/current/modeset"
+    temperature_command_topic: "tele/pow1/current/temp/tempset"
+    swing_mode_command_topic: "tele/pow1/current/temp/swset"
+    precision: 1.0
+    current_temperature_topic: "tele/pow1/current"
+    current_temperature_template: "{{ value_json.current_temperature }}"
+    max_temp: 40
+
+####################################################
+#                                                  #
+#            END OF CONFIGURATION FILE             #
+#                                                  #
+####################################################
